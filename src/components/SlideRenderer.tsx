@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Slide } from '../types';
+import { Slide, PRESENTATION_SLIDES } from '../types';
 import { 
   ShieldCheck, Stethoscope, Users, CalendarRange, 
   Settings2, Heart, Award, ArrowUpRight, Zap, 
@@ -121,7 +121,7 @@ export default function SlideRenderer({
                 <span className="font-mono text-[10px]">{slide.content[1]} | {slide.content[2]}</span>
               </div>
               <div className="bg-slate-800/80 border border-slate-700/50 backdrop-blur px-3 py-1.5 rounded-lg text-slate-300 text-[10px] font-mono">
-                Slide {slide.id} of 9
+                Slide {slide.id} of {PRESENTATION_SLIDES.length}
               </div>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function SlideRenderer({
             {/* Slide Footer */}
             <div className="flex justify-between items-center text-slate-400 text-[10px] mt-8 pt-4 border-t border-slate-100 font-mono">
               <span>Prepared for F & J Board</span>
-              <span>Slide {slide.id} of 9</span>
+              <span>Slide {slide.id} of {PRESENTATION_SLIDES.length}</span>
             </div>
           </div>
         );
@@ -230,7 +230,7 @@ export default function SlideRenderer({
             {/* Slide Footer */}
             <div className="flex justify-between items-center text-slate-400 text-[10px] mt-8 pt-4 border-t border-slate-100 font-mono">
               <span>Verified Requirements Grid</span>
-              <span>Slide {slide.id} of 9</span>
+              <span>Slide {slide.id} of {PRESENTATION_SLIDES.length}</span>
             </div>
           </div>
         );
@@ -293,7 +293,7 @@ export default function SlideRenderer({
             {/* Slide Footer */}
             <div className="flex justify-between items-center text-slate-400 text-[10px] mt-8 pt-4 border-t border-slate-100 font-mono">
               <span>Proposed Digital Architecture</span>
-              <span>Slide {slide.id} of 9</span>
+              <span>Slide {slide.id} of {PRESENTATION_SLIDES.length}</span>
             </div>
           </div>
         );
@@ -355,7 +355,7 @@ export default function SlideRenderer({
             {/* Slide Footer */}
             <div className="flex justify-between items-center text-slate-400 text-[10px] mt-8 pt-4 border-t border-slate-100 font-mono">
               <span>Operational Capabilities Breakdown</span>
-              <span>Slide {slide.id} of 9</span>
+              <span>Slide {slide.id} of {PRESENTATION_SLIDES.length}</span>
             </div>
           </div>
         );
@@ -444,7 +444,7 @@ export default function SlideRenderer({
             {/* Slide Footer */}
             <div className="flex justify-between items-center text-slate-400 text-[10px] mt-8 pt-4 border-t border-slate-100 font-mono">
               <span>F&J Orthodontics Partner Pitch</span>
-              <span>Slide {slide.id} of 9</span>
+              <span>Slide {slide.id} of {PRESENTATION_SLIDES.length}</span>
             </div>
           </div>
         );
@@ -657,7 +657,7 @@ export default function SlideRenderer({
             {/* Slide Footer */}
             <div className="flex justify-between items-center text-slate-400 text-[10px] mt-6 pt-3 border-t border-slate-100 font-mono">
               <span>MetaWave Innovations • Digital Growth Foundation</span>
-              <span>Slide {slide.id} of 9</span>
+              <span>Slide {slide.id} of {PRESENTATION_SLIDES.length}</span>
             </div>
           </div>
         );
@@ -829,7 +829,98 @@ export default function SlideRenderer({
             {/* Slide Footer */}
             <div className="flex justify-between items-center text-slate-400 text-[10px] mt-6 pt-3 border-t border-slate-100 font-mono">
               <span>Prepared by MetaWave Innovations</span>
-              <span>Slide {slide.id} of 9</span>
+              <span>Slide {slide.id} of {PRESENTATION_SLIDES.length}</span>
+            </div>
+          </div>
+        );
+
+      case 'web-pricing':
+        return (
+          <div className="w-full flex flex-col h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] justify-between p-5 sm:p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between mb-5 pb-4 border-b border-slate-100">
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded uppercase tracking-wider">
+                    {slide.subtitle || 'Website Pricing'}
+                  </span>
+                  <h2 className="font-display font-extrabold text-2xl md:text-3xl text-slate-900 tracking-tight mt-1.5">{slide.title}</h2>
+                </div>
+                <div className="bg-emerald-50 text-emerald-600 p-2.5 rounded-xl">
+                  <Globe size={22} />
+                </div>
+              </div>
+
+              {/* Main Pricing layout content */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-4">
+                
+                {/* Left side: Package detail card (5 cols) */}
+                <div className="md:col-span-5 bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-2xl p-6 shadow-lg flex flex-col justify-between border border-slate-800">
+                  <div>
+                    <span className="text-[9px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/25 tracking-wider uppercase">
+                      Ultimate Web Solution
+                    </span>
+                    <h3 className="font-display font-extrabold text-xl mt-4 leading-snug">
+                      Custom High-End Web Platform
+                    </h3>
+                    <p className="text-[11px] text-slate-300 leading-relaxed mt-3">
+                      A bespoke, superfast, mobile-friendly clinical ecosystem featuring a clinical administration dashboard, patient portal, and custom design.
+                    </p>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-slate-800/80">
+                    <span className="text-[9px] font-mono text-slate-400 uppercase tracking-widest block font-bold">One-Time Investment</span>
+                    <div className="flex items-baseline gap-1 mt-1.5">
+                      <span className="text-3xl md:text-4xl font-display font-black text-emerald-400">PKR 60,000</span>
+                      <span className="text-[11px] text-slate-400 font-medium">Flat Fee</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right side: Detailed inclusions checklist (7 cols) */}
+                <div className="md:col-span-7 flex flex-col justify-between">
+                  <div>
+                    <h4 className="font-display font-bold text-xs text-slate-900 mb-3.5 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+                      What’s Included in Ultimate Web Package:
+                    </h4>
+                    
+                    {/* Inclusions Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[10.5px]">
+                      {[
+                        "Custom Web Design & Layout",
+                        "Interactive Patient Portal",
+                        "Admin Dashboard & Settings",
+                        "Management Control Panel",
+                        "Free Domain (1st Year)",
+                        "Superfast Cloud Hosting (1st Year)",
+                        "Official Email Mailboxes Setup",
+                        "Post-Launch Technical Support"
+                      ].map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-2.5 bg-[#FAFAF9] border border-slate-200/50 p-3 rounded-xl shadow-xs text-slate-700">
+                          <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
+                          <span className="font-medium leading-tight">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Trust highlight block */}
+                  <div className="bg-emerald-50/50 border border-emerald-100 p-3 rounded-lg flex items-center gap-2.5 mt-4">
+                    <Award size={18} className="text-emerald-600 shrink-0" />
+                    <p className="text-[9px] text-emerald-950 leading-relaxed font-semibold">
+                      Complete, ready-to-launch setup with zero friction. Free domain registration & high-speed cloud hosting included for the 1st year.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Slide Footer */}
+            <div className="flex justify-between items-center text-slate-400 text-[10px] mt-6 pt-3 border-t border-slate-100 font-mono">
+              <span>Prepared by MetaWave Innovations</span>
+              <span>Slide {slide.id} of {PRESENTATION_SLIDES.length}</span>
             </div>
           </div>
         );
@@ -888,7 +979,7 @@ export default function SlideRenderer({
             {/* Slide Footer */}
             <div className="flex justify-between items-center text-slate-400 text-[10px] mt-8 pt-4 border-t border-slate-100 font-mono">
               <span>Strategic Partnership Merits</span>
-              <span>Slide {slide.id} of 9</span>
+              <span>Slide {slide.id} of {PRESENTATION_SLIDES.length}</span>
             </div>
           </div>
         );

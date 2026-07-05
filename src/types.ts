@@ -4,7 +4,7 @@ export interface Slide {
   subtitle?: string;
   content: string[]; // bullets or sections
   speakerNotes: string[];
-  layoutType: 'title' | 'summary' | 'bullets' | 'split' | 'two-column' | 'conclusion' | 'marketing-plan' | 'management-plan';
+  layoutType: 'title' | 'summary' | 'bullets' | 'split' | 'two-column' | 'conclusion' | 'marketing-plan' | 'management-plan' | 'web-pricing';
   visualSuggestion?: string;
 }
 
@@ -126,26 +126,6 @@ export const PRESENTATION_SLIDES: Slide[] = [
   },
   {
     id: 7,
-    title: "Let’s Transform Your Smile Center",
-    subtitle: "Conclusion & Contact",
-    content: [
-      "We are ready to build a digital platform that reflects the prestige of your practice.",
-      "Call to Action: 'We look forward to partnering with you.'",
-      "Website: www.metawaveinnovations.com",
-      "Contact Email: team@metawaveinnovations.com",
-      "Phone: 03390088458"
-    ],
-    speakerNotes: [
-      "In conclusion, we are fully prepared to launch this project and partner with F & J Orthodontics.",
-      "Your clinical excellence deserves a digital representation of equal caliber.",
-      "We are ready to align, build, and deploy this within our proposed timeline.",
-      "Thank you for your time today. Let's open the floor to any questions!"
-    ],
-    layoutType: 'conclusion',
-    visualSuggestion: "A clean image of a doctor/patient interaction with a large 'Checkmark' badge to symbolize trust and completion."
-  },
-  {
-    id: 8,
     title: "3-Month Digital Marketing Foundation Plan",
     subtitle: "Patient Acquisition • Brand Awareness • Local Visibility",
     content: [
@@ -166,28 +146,66 @@ export const PRESENTATION_SLIDES: Slide[] = [
     visualSuggestion: "Six premium bento-style cards in a clean 3x2 grid layout, completed with a solid emerald call-out banner."
   },
   {
+    id: 8,
+    title: "Investment Proposal: Web Platform",
+    subtitle: "Website Development Pricing",
+    content: [
+      "Ultimate Package Price: PKR 60,000 (Flat One-Time Investment)",
+      "High-End Visual Interface: Custom clinic website layout reflecting your elite clinic brand",
+      "Comprehensive Patient Portal: Automated treatment exploration & patient experience",
+      "Administrative Power Control: Secure Admin Dashboard & Clinic analytical panel",
+      "Management Controls: Simplified booking approvals, schedules and dental health updates",
+      "Zero Setup Friction: Free Domain registration & high-speed cloud hosting (1 Year included)",
+      "Official Communication: Professional clinic email accounts & secure corporate mailboxes",
+      "Ongoing Support: Post-launch warranty, regular security backups, and technical support"
+    ],
+    speakerNotes: [
+      "Let's review the investment required to bring this world-class Web Platform to life.",
+      "The Ultimate Web Development package is priced at a flat, one-time investment of PKR 60,000.",
+      "This includes the complete clinic website with modern department directories and high-fidelity doctor profiles.",
+      "But beyond a simple webpage, you get the interactive Patient Portal and the secure Administrative Dashboard with full analytical management control.",
+      "We also bundle a premium domain name, high-speed secure cloud hosting, and official clinic email mailboxes completely free for the first year so you are ready to launch immediately."
+    ],
+    layoutType: 'web-pricing',
+    visualSuggestion: "Premium layout showcasing a large PKR 60,000 badge with split sections detailing the admin control, portal, and free hosting bundle."
+  },
+  {
     id: 9,
     title: "Monthly Growth & Digital Management",
-    subtitle: "Long-Term Growth Partnership",
+    subtitle: "Long-Term Growth Retainers",
     content: [
-      "Social Media Management",
-      "Monthly SEO Maintenance",
-      "AEO & GEO Updates",
-      "Google Business Management",
-      "Blog Publishing",
-      "Website Maintenance",
-      "Performance Monitoring",
-      "Reputation Management",
-      "Monthly Reporting",
-      "Technical Support"
+      "Digital Growth Management: PKR 20,000 / Month (SEO, GEO, Socials, Google Maps & Admin Tracking)",
+      "Optional Creative Production (Classic): PKR 12,000 / Month (Post designs, story/carousel, up to 3 Reels & 3 edited videos/mo)",
+      "Optional Creative Production (Ultimate): PKR 20,000 / Month (Classic package + premium custom graphics, up to 5 Reels & edited videos/mo)",
+      "Recommended Ads Budget: PKR 15,000 – 40,000+ / Month (Paid directly to platforms, optimized based on Dr. Jabbar's budget)"
     ],
     speakerNotes: [
       "Beyond the launch, we propose a long-term growth partnership to manage and scale your digital footprint.",
-      "Our team handles full social media management, continuous SEO/GEO updates, regular website maintenance, and detailed monthly reports.",
-      "We offer two distinct retainer phases: a comprehensive PKR 30,000/month Foundation Phase, followed by a PKR 15,000+/month Maintenance Phase.",
-      "Your advertising budget remains entirely controlled by you. Let's collaborate to make F & J the most trusted smile center in the region."
+      "Our standard Digital Growth Management is PKR 20,000 per month, covering comprehensive SEO, AEO, GEO, social media scheduling, Google Business, maps, and detailed performance metrics.",
+      "If you need customized high-quality social media graphics or professionally filmed/edited reels, we offer optional creative production packages at PKR 12,000 or PKR 20,000 per month.",
+      "Lastly, we recommend a paid ads budget of PKR 15,000 to 40,000+ per month paid directly to Meta or Google. This budget remains fully controlled by Dr. Jabbar, and we align our campaigns to maximize conversion and appointment volume."
     ],
     layoutType: 'management-plan',
     visualSuggestion: "A modern split-screen interface displaying professional management checklist services on the left, and three premium stacked pricing cards on the right."
+  },
+  {
+    id: 10,
+    title: "Let’s Transform Your Smile Center",
+    subtitle: "Conclusion & Contact",
+    content: [
+      "We are ready to build a digital platform that reflects the prestige of your practice.",
+      "Call to Action: 'We look forward to partnering with you.'",
+      "Website: www.metawaveinnovations.com",
+      "Contact Email: team@metawaveinnovations.com",
+      "Phone: 03390088458"
+    ],
+    speakerNotes: [
+      "In conclusion, we are fully prepared to launch this project and partner with F & J Orthodontics.",
+      "Your clinical excellence deserves a digital representation of equal caliber.",
+      "We are ready to align, build, and deploy this within our proposed timeline.",
+      "Thank you for your time today. Let's open the floor to any questions!"
+    ],
+    layoutType: 'conclusion',
+    visualSuggestion: "A clean image of a doctor/patient interaction with a large 'Checkmark' badge to symbolize trust and completion."
   }
 ];
