@@ -17,7 +17,22 @@ import {
   Download, Printer
 } from 'lucide-react';
 
+// Static image asset URLs for instant lookup and dynamic browser preloading
+const IMAGE_ASSETS = {
+  dentistPortrait: "/src/assets/images/dentist_portrait_1783111459193.jpg",
+  orthodonticsClinic: "/src/assets/images/orthodontics_clinic_1783111472704.jpg",
+  patientInteraction: "/src/assets/images/patient_interaction_1783111488276.jpg"
+};
+
 export default function App() {
+  // Preload all presentation image assets eagerly on application mount to ensure 0ms delays
+  useEffect(() => {
+    Object.values(IMAGE_ASSETS).forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   // Slide Deck navigation index
   const [currentSlideIdx, setCurrentSlideIdx] = useState(0);
   
@@ -276,12 +291,8 @@ export default function App() {
     }
   };
 
-  // Image assets loaded from generated files
-  const imageAssets = {
-    dentistPortrait: "/src/assets/images/dentist_portrait_1783111459193.jpg",
-    orthodonticsClinic: "/src/assets/images/orthodontics_clinic_1783111472704.jpg",
-    patientInteraction: "/src/assets/images/patient_interaction_1783111488276.jpg"
-  };
+  // Image assets loaded from pre-cached static assets
+  const imageAssets = IMAGE_ASSETS;
 
   const activeSlide = PRESENTATION_SLIDES[currentSlideIdx];
 
