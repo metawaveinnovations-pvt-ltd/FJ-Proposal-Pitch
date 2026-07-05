@@ -1,0 +1,8 @@
+{
+  "name": "Remix: F \u0026 J Orthodontics Proposal Pitch",
+  "description": "An interactive, professional PowerPoint presentation and proposed digital solution showcase for F \u0026 J Orthodontics \u0026 Smile Design Center by MetaWave Innovations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
