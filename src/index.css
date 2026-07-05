@@ -6,3 +6,46 @@
   --font-display: "Poppins", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
+
+@media print {
+  /* Hide standard screen workspace */
+  body {
+    background-color: white !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Landscape layout configuration */
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+
+  /* Full bleed high-fidelity slide page container */
+  .print-slide-page {
+    width: 297mm; /* Standard landscape A4 width */
+    height: 210mm; /* Standard landscape A4 height */
+    page-break-after: always;
+    break-after: page;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    background-color: #FAFAF9 !important; /* Elegant slate background tint */
+    padding: 3rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ensure content stays crisp and fills space perfectly without overflow */
+  .print-slide-page * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+

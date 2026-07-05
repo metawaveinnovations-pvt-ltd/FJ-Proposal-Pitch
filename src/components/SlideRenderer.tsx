@@ -62,7 +62,7 @@ export default function SlideRenderer({
     switch (slide.layoutType) {
       case 'title':
         return (
-          <div className="relative w-full h-full min-h-[460px] rounded-2xl overflow-hidden flex flex-col justify-between p-8 md:p-12 text-white shadow-lg">
+          <div className="relative w-full h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] rounded-2xl overflow-hidden flex flex-col justify-between p-5 sm:p-8 md:p-12 text-white shadow-lg">
             {/* Background Image with elegant overlay */}
             <div className="absolute inset-0 z-0">
               <img 
@@ -127,7 +127,7 @@ export default function SlideRenderer({
 
       case 'summary':
         return (
-          <div className="w-full flex flex-col h-full min-h-[460px] justify-between p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
+          <div className="w-full flex flex-col h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] justify-between p-5 sm:p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
@@ -181,7 +181,7 @@ export default function SlideRenderer({
 
       case 'bullets':
         return (
-          <div className="w-full flex flex-col h-full min-h-[460px] justify-between p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
+          <div className="w-full flex flex-col h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] justify-between p-5 sm:p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
@@ -235,7 +235,7 @@ export default function SlideRenderer({
 
       case 'split':
         return (
-          <div className="w-full flex flex-col h-full min-h-[460px] justify-between p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
+          <div className="w-full flex flex-col h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] justify-between p-5 sm:p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
@@ -258,7 +258,7 @@ export default function SlideRenderer({
                     <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
                     Proposed Website Pages
                   </h4>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] sm:text-xs">
                     {slide.content[0].replace('Website Pages: ', '').split(', ').map((page, pIdx) => (
                       <div key={pIdx} className="flex items-center gap-1.5 bg-white border border-emerald-100 p-2 rounded shadow-sm text-slate-700">
                         <Check size={11} className="text-emerald-600" />
@@ -301,7 +301,7 @@ export default function SlideRenderer({
         const adminFeatures = slide.content.slice(6);
 
         return (
-          <div className="w-full flex flex-col h-full min-h-[460px] justify-between p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
+          <div className="w-full flex flex-col h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] justify-between p-5 sm:p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
@@ -360,7 +360,7 @@ export default function SlideRenderer({
 
       case 'conclusion':
         return (
-          <div className="w-full flex flex-col h-full min-h-[460px] justify-between p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
+          <div className="w-full flex flex-col h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] justify-between p-5 sm:p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               
               {/* Text Area (7 cols) */}
@@ -420,7 +420,7 @@ export default function SlideRenderer({
               </div>
 
               {/* Image Area with Badge overlay (5 cols) */}
-              <div className="md:col-span-5 relative h-64 bg-slate-100 rounded-2xl overflow-hidden shadow-md flex items-center justify-center">
+              <div className="md:col-span-5 relative h-48 sm:h-56 md:h-64 bg-slate-100 rounded-2xl overflow-hidden shadow-md flex items-center justify-center">
                 <img 
                   src={patientInteractionUrl} 
                   alt="Doctor Patient Smile Interaction" 
@@ -447,7 +447,7 @@ export default function SlideRenderer({
 
       case 'marketing-plan':
         return (
-          <div className="w-full flex flex-col h-full min-h-[460px] justify-between p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
+          <div className="w-full flex flex-col h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] justify-between p-5 sm:p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-5 pb-4 border-b border-slate-100">
@@ -629,7 +629,7 @@ export default function SlideRenderer({
                     Graphic designs, social media posts, reels, video editing, banners, posters, and other creative assets are not included in the Digital Marketing Management package. If MetaWave Innovations creates these assets, choose one of our optional creative packages:
                   </p>
                 </div>
-                <div className="flex gap-3 shrink-0">
+                <div className="flex gap-2.5 sm:gap-3 shrink-0 flex-wrap sm:flex-nowrap justify-center">
                   <div className="bg-white border border-slate-200 p-2.5 rounded-lg text-center shadow-xs">
                     <span className="block text-[8px] uppercase tracking-wider font-bold text-slate-400">Classic Package</span>
                     <strong className="block text-xs text-blue-700 font-display">PKR 12,000 / mo</strong>
@@ -644,7 +644,7 @@ export default function SlideRenderer({
               {/* Goal Highlight Banner */}
               <div className="mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-3.5 rounded-xl flex items-center gap-2.5 shadow-md border border-emerald-400/20">
                 <CheckCircle2 size={18} className="text-emerald-100 shrink-0" />
-                <p className="text-[11px] font-display font-semibold">
+                <p className="text-[10px] sm:text-[11px] font-display font-semibold">
                   Goal: Build a strong digital foundation that increases online visibility, strengthens patient trust, improves local Google rankings, and consistently generates qualified appointment enquiries.
                 </p>
               </div>
@@ -660,7 +660,7 @@ export default function SlideRenderer({
 
       case 'management-plan':
         return (
-          <div className="w-full flex flex-col h-full min-h-[460px] justify-between p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
+          <div className="w-full flex flex-col h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] justify-between p-5 sm:p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-5 pb-4 border-b border-slate-100">
@@ -832,7 +832,7 @@ export default function SlideRenderer({
 
       default: // Grid bento slides (including Slide 6 Advantage)
         return (
-          <div className="w-full flex flex-col h-full min-h-[460px] justify-between p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
+          <div className="w-full flex flex-col h-full min-h-[360px] sm:min-h-[400px] md:min-h-[460px] justify-between p-5 sm:p-8 md:p-12 bg-white rounded-2xl border border-slate-100 shadow-md">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">

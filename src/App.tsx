@@ -14,7 +14,7 @@ import {
   Maximize2, Minimize2, MonitorPlay, BookOpen, 
   Award, Info, Sparkles, CheckCircle2, Pointer, 
   Clock, Layers, ShieldCheck, Eye, EyeOff, LayoutTemplate,
-  Download
+  Download, Printer
 } from 'lucide-react';
 
 export default function App() {
@@ -153,6 +153,23 @@ export default function App() {
     return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
   }, [isFullscreen]);
 
+  // Handle navigation show/hide transitions in fullscreen mode
+  useEffect(() => {
+    if (isFullscreen) {
+      if (currentSlideIdx === 0) {
+        setShowFullscreenHeader(true);
+        const timer = setTimeout(() => {
+          setShowFullscreenHeader(false);
+        }, 5000);
+        return () => clearTimeout(timer);
+      } else if (currentSlideIdx === PRESENTATION_SLIDES.length - 1) {
+        setShowFullscreenHeader(true);
+      }
+    } else {
+      setShowFullscreenHeader(true);
+    }
+  }, [isFullscreen, currentSlideIdx]);
+
   // Request browser-level full screen if possible, fallback gracefully to React State Overlay
   const toggleFullscreenState = () => {
     if (!isFullscreen) {
@@ -207,6 +224,11 @@ export default function App() {
         setIsExportingPDF(false);
       }
     }, 1000);
+  };
+
+  // Trigger high-fidelity landscape browser print dialog
+  const handlePrint = () => {
+    window.print();
   };
 
   // Laser Pointer position trackers
@@ -264,7 +286,8 @@ export default function App() {
   const activeSlide = PRESENTATION_SLIDES[currentSlideIdx];
 
   return (
-    <div className="min-h-screen bg-stone-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-900">
+    <>
+      <div className="min-h-screen bg-stone-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-900 print:hidden">
       
       {/* CORPORATE BRAND HEADER / NAVBAR */}
       <header className="bg-white border-b border-stone-200 py-4 px-6 md:px-8 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4 sticky top-0 z-50">
@@ -290,41 +313,53 @@ export default function App() {
         </div>
 
         {/* Global Slide-Show Master Control Panel */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
           <button
             onClick={handleDownloadPDF}
             disabled={isExportingPDF}
-            className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all cursor-pointer ${
+            className={`px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 border transition-all cursor-pointer ${
               isExportingPDF
                 ? 'bg-stone-50 border-stone-200 text-stone-400 cursor-not-allowed'
                 : 'bg-white border-stone-200 hover:border-blue-300 text-blue-700 hover:bg-blue-50/50'
             }`}
-            title="Download full presentation as landscape PDF"
+            title="Attempt client-side PDF render (may be limited by iframe sandboxing)"
           >
-            <Download size={14} className={isExportingPDF ? 'animate-bounce' : ''} />
+            <Download size={13} className={isExportingPDF ? 'animate-bounce' : ''} />
             <span>{isExportingPDF ? 'Generating...' : 'Download PDF'}</span>
           </button>
 
           <button
+            onClick={handlePrint}
+            className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 border transition-all cursor-pointer bg-emerald-50 border-emerald-200 hover:border-emerald-300 text-emerald-800 hover:bg-emerald-100/60"
+            title="Open browser print dialog to print or save the entire landscape deck as PDF. Highly recommended!"
+          >
+            <Printer size={13} />
+            <span>Print Deck / Save PDF</span>
+          </button>
+
+          <button
             onClick={() => setLaserPointerActive(!laserPointerActive)}
-            className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all cursor-pointer ${
+            className={`px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 border transition-all cursor-pointer ${
               laserPointerActive 
                 ? 'bg-rose-50 border-rose-300 text-rose-700 font-bold animate-pulse' 
                 : 'bg-white border-stone-200 hover:border-rose-300 text-stone-600'
             }`}
             title="Toggle interactive simulated laser pointer"
           >
-            <Pointer size={14} />
+            <Pointer size={13} />
             <span>Laser</span>
           </button>
 
           <button
             onClick={toggleFullscreenState}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 transition-all shadow-md hover:shadow-lg scale-100 hover:scale-[1.03] cursor-pointer"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] sm:text-xs px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl flex items-center gap-1 sm:gap-1.5 transition-all shadow-md hover:shadow-lg scale-100 hover:scale-[1.03] cursor-pointer"
             title="Start immersive full screen slide show presentation"
           >
-            <MonitorPlay size={14} />
-            <span>Start Slideshow</span>
+            <MonitorPlay size={13} />
+            <span>
+              <span className="hidden sm:inline">Start Slideshow</span>
+              <span className="inline sm:hidden">Present</span>
+            </span>
           </button>
         </div>
 
@@ -413,7 +448,7 @@ export default function App() {
               className="w-full relative bg-[#FAF9F6] border border-stone-200 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col"
             >
               {/* Primary viewport stage with bottom padding for floating controls */}
-              <div className="relative w-full min-h-[480px] flex flex-col items-stretch justify-center p-3 sm:p-5 pb-24 select-none">
+              <div className="relative w-full min-h-[380px] sm:min-h-[420px] md:min-h-[480px] flex flex-col items-stretch justify-center p-3 sm:p-5 pb-24 select-none">
                 <AnimatePresence mode="wait">
                   <SlideRenderer 
                     key={currentSlideIdx}
@@ -877,7 +912,27 @@ export default function App() {
         </div>
       )}
 
-    </div>
+      </div>
+
+      {/* High-fidelity full-deck landscape Print layout */}
+      <div className="hidden print:block bg-white w-full min-h-screen">
+        {PRESENTATION_SLIDES.map((slide) => (
+          <div 
+            key={slide.id} 
+            className="print-slide-page"
+          >
+            <div className="w-full h-full max-w-5xl flex flex-col justify-between mx-auto">
+              <SlideRenderer
+                slide={slide}
+                orthodonticsClinicUrl={imageAssets.orthodonticsClinic}
+                patientInteractionUrl={imageAssets.patientInteraction}
+                dentistPortraitUrl={imageAssets.dentistPortrait}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
