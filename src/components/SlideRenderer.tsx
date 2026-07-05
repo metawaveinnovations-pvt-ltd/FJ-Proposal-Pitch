@@ -69,6 +69,8 @@ export default function SlideRenderer({
                 src={orthodonticsClinicUrl} 
                 alt="Orthodontics Clinic Background" 
                 referrerPolicy="no-referrer"
+                loading="eager"
+                decoding="sync"
                 className="w-full h-full object-cover filter brightness-[0.25] contrast-[1.1]"
               />
               {/* Emerald Green and Cobalt Blue ambient glow spots */}
@@ -425,6 +427,8 @@ export default function SlideRenderer({
                   src={patientInteractionUrl} 
                   alt="Doctor Patient Smile Interaction" 
                   referrerPolicy="no-referrer"
+                  loading="eager"
+                  decoding="sync"
                   className="w-full h-full object-cover filter contrast-[1.05]"
                 />
                 

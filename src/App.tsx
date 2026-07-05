@@ -14,22 +14,28 @@ import {
   Maximize2, Minimize2, MonitorPlay, BookOpen, 
   Award, Info, Sparkles, CheckCircle2, Pointer, 
   Clock, Layers, ShieldCheck, Eye, EyeOff, LayoutTemplate,
-  Download, Printer
+  Download, Printer, X
 } from 'lucide-react';
+
+import dentistPortrait from './assets/images/dentist_portrait_1783111459193.jpg';
+import orthodonticsClinic from './assets/images/orthodontics_clinic_1783111472704.jpg';
+import patientInteraction from './assets/images/patient_interaction_1783111488276.jpg';
 
 // Static image asset URLs for instant lookup and dynamic browser preloading
 const IMAGE_ASSETS = {
-  dentistPortrait: "/src/assets/images/dentist_portrait_1783111459193.jpg",
-  orthodonticsClinic: "/src/assets/images/orthodontics_clinic_1783111472704.jpg",
-  patientInteraction: "/src/assets/images/patient_interaction_1783111488276.jpg"
+  dentistPortrait,
+  orthodonticsClinic,
+  patientInteraction
 };
 
 export default function App() {
   // Preload all presentation image assets eagerly on application mount to ensure 0ms delays
   useEffect(() => {
     Object.values(IMAGE_ASSETS).forEach((src) => {
-      const img = new Image();
-      img.src = src;
+      if (src) {
+        const img = new Image();
+        img.src = src;
+      }
     });
   }, []);
 
@@ -167,23 +173,6 @@ export default function App() {
     document.addEventListener('fullscreenchange', onFullscreenChange);
     return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
   }, [isFullscreen]);
-
-  // Handle navigation show/hide transitions in fullscreen mode
-  useEffect(() => {
-    if (isFullscreen) {
-      if (currentSlideIdx === 0) {
-        setShowFullscreenHeader(true);
-        const timer = setTimeout(() => {
-          setShowFullscreenHeader(false);
-        }, 5000);
-        return () => clearTimeout(timer);
-      } else if (currentSlideIdx === PRESENTATION_SLIDES.length - 1) {
-        setShowFullscreenHeader(true);
-      }
-    } else {
-      setShowFullscreenHeader(true);
-    }
-  }, [isFullscreen, currentSlideIdx]);
 
   // Request browser-level full screen if possible, fallback gracefully to React State Overlay
   const toggleFullscreenState = () => {
@@ -671,58 +660,16 @@ export default function App() {
             className="fixed inset-0 z-[99999] bg-stone-950 text-white flex flex-col justify-between p-6 select-none"
             style={{ touchAction: 'none' }}
           >
-            {/* Fullscreen Header Strip */}
-            {showFullscreenHeader && (
-              <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                <div className="flex items-center gap-3">
-                  <span className="bg-emerald-600 text-white font-mono text-xs font-bold px-2 py-0.5 rounded tracking-wide uppercase shadow">
-                    F&J Presenter Show
-                  </span>
-                  <span className="text-xs text-stone-400 font-medium hidden sm:inline">
-                    Client: F & J Orthodontics & Smile Design Center
-                  </span>
-                </div>
-
-                {/* Status information */}
-                <div className="flex items-center gap-4 text-xs font-mono">
-                  <div className="flex items-center gap-1.5 text-stone-400 bg-stone-900/80 px-2.5 py-1 rounded border border-white/10">
-                    <Clock size={13} className="text-emerald-400 animate-pulse" />
-                    <span>{formatTime(timerSeconds)}</span>
-                  </div>
-                  
-                  {/* Hide top navigation toggler button */}
-                  <button
-                    onClick={() => setShowFullscreenHeader(false)}
-                    className="bg-white/10 hover:bg-white/20 text-stone-300 hover:text-white border border-white/10 p-1.5 px-2.5 rounded-lg flex items-center gap-1.5 transition text-xs font-medium cursor-pointer"
-                    title="Hide Top Navigation Bar"
-                  >
-                    <EyeOff size={13} />
-                    <span>Hide Nav</span>
-                  </button>
-
-                  <button
-                    onClick={toggleFullscreenState}
-                    className="bg-white/10 hover:bg-white/20 text-white border border-white/10 p-1.5 px-2.5 rounded-lg flex items-center gap-1.5 transition text-xs font-medium cursor-pointer"
-                    title="Exit Full Screen Show"
-                  >
-                    <Minimize2 size={13} />
-                    <span>Exit Show</span>
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* Floating button to bring back the top navigation bar when hidden */}
-            {!showFullscreenHeader && (
+            {/* Absolute Top Right Close Button */}
+            <div className="absolute top-6 right-6 z-[100000]">
               <button
-                onClick={() => setShowFullscreenHeader(true)}
-                className="absolute top-4 right-6 z-[100000] bg-stone-900/85 hover:bg-stone-800 text-stone-300 hover:text-white border border-white/10 p-1.5 px-2.5 rounded-lg flex items-center gap-1.5 transition text-xs font-mono cursor-pointer shadow-lg hover:border-emerald-500/50 duration-200"
-                title="Show Top Navigation Bar"
+                onClick={toggleFullscreenState}
+                className="p-3 bg-stone-900/80 hover:bg-rose-600 border border-white/10 hover:border-rose-500 rounded-full text-stone-300 hover:text-white shadow-2xl transition-all duration-200 cursor-pointer flex items-center justify-center group"
+                title="Exit Full Screen Show"
               >
-                <Eye size={13} className="text-emerald-400" />
-                <span>Show Top Nav</span>
+                <X size={20} className="transition-transform group-hover:rotate-90 duration-200" />
               </button>
-            )}
+            </div>
 
             {/* Centered slide viewer body */}
             <div className="flex-grow flex items-center justify-center max-w-5xl mx-auto w-full my-6 relative overflow-hidden">
@@ -923,6 +870,13 @@ export default function App() {
         </div>
       )}
 
+      </div>
+
+      {/* Hidden eager image preloader for instant browser-level caching and decoding */}
+      <div className="sr-only invisible w-0 h-0 overflow-hidden" aria-hidden="true">
+        <img src={IMAGE_ASSETS.orthodonticsClinic} loading="eager" decoding="sync" alt="" />
+        <img src={IMAGE_ASSETS.patientInteraction} loading="eager" decoding="sync" alt="" />
+        <img src={IMAGE_ASSETS.dentistPortrait} loading="eager" decoding="sync" alt="" />
       </div>
 
       {/* High-fidelity full-deck landscape Print layout */}
